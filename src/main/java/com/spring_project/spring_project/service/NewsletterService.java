@@ -6,28 +6,31 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class NewsletterEntryService {
+public class NewsletterService {
+
     @Autowired
     private NewsletterRepository newsletterRepository;
 
-    public List<NewsletterEntry> getAllNewsletters() {
+    public List<NewsletterEntry> allNews(){
         return newsletterRepository.findAll();
     }
 
-    public void saveEntry(NewsletterEntry newsletterEntry){
-        newsletterRepository.save(newsletterEntry);
-    }
-
-    public Optional<NewsletterEntry> findById(ObjectId id){
+    public Optional<NewsletterEntry> newsById(ObjectId id){
         return newsletterRepository.findById(id);
     }
 
-    public void deleteById(ObjectId id){
-        newsletterRepository.deleteById(id);
+    public NewsletterEntry createNewsLetter(String title, String content){
+        NewsletterEntry newsletterEntry = new NewsletterEntry();
+        newsletterEntry.setTitle(title);
+        newsletterEntry.setContent(content);
+        newsletterEntry.setDate(LocalDateTime.now());
+
+        return newsletterRepository.save(newsletterEntry);
     }
 }
 // controller -> service -> repository
