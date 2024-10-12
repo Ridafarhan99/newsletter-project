@@ -20,11 +20,13 @@ public class NewsletterController {
     private NewsletterService newsletterService;
 
     @GetMapping
+    @CrossOrigin(origins = "*")
     public ResponseEntity<List<NewsletterEntry>> allMovies(){
         return new ResponseEntity<List<NewsletterEntry>>(newsletterService.allNews(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Optional<NewsletterEntry>> getNewsById(@PathVariable ObjectId id){
         return new ResponseEntity<Optional<NewsletterEntry>>(newsletterService.newsById(id), HttpStatus.OK);
     }

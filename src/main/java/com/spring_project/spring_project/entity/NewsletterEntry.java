@@ -22,7 +22,7 @@ public class NewsletterEntry {
     private String title;
     private String content;
     private LocalDateTime date;
-    @DocumentReference
+
     private List<Comment> comments;
 
 }
