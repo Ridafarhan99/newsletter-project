@@ -66,7 +66,6 @@ public class NewsletterController {
 
     @DeleteMapping("/{timestamp}")
     public ResponseEntity<Void> deleteNews(@PathVariable long timestamp) {
-        System.out.println("timestamp for deletion: "+timestamp);
         boolean deleted = newsletterService.deleteNewsletterByTimestamp(timestamp);
 
         if (deleted) {
