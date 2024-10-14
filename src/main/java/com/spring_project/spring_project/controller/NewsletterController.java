@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/news")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://newsletter-xlir.onrender.com")
 public class NewsletterController {
 
     @Autowired
