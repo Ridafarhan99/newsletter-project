@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface NewsletterRepository extends MongoRepository<NewsletterEntry, ObjectId> {
-    Optional<NewsletterEntry> findByTimestamp(String timestamp);
+
 }
 // controller -> service -> repository

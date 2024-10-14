@@ -44,8 +44,6 @@ public class NewsletterController {
     public ResponseEntity<NewsletterEntry> updateNewsletter(
             @PathVariable String timestamp, @RequestBody NewsletterEntry newsDetails
     ) {
-        System.out.println("ID: "+timestamp);
-        System.out.println("newsDetails: "+newsDetails);
 
         // Set the ID for the entry being updated
         // Convert the timestamp from String to long
@@ -63,6 +61,18 @@ public class NewsletterController {
             return new ResponseEntity<>(updatedEntry, HttpStatus.OK); // Return the updated entry
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); // No entry found with that timestamp
+        }
+    }
+
+    @DeleteMapping("/{timestamp}")
+    public ResponseEntity<Void> deleteNews(@PathVariable long timestamp) {
+        System.out.println("timestamp for deletion: "+timestamp);
+        boolean deleted = newsletterService.deleteNewsletterByTimestamp(timestamp);
+
+        if (deleted) {
+            return ResponseEntity.ok().build(); // Return 200 OK on successful deletion
+        } else {
+            return ResponseEntity.notFound().build(); // No entry found with that timestamp
         }
     }
 }

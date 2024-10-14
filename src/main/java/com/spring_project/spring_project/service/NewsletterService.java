@@ -49,5 +49,18 @@ public class NewsletterService {
         // Return null if no entry found with the given timestamp
         return null;
     }
+
+    public boolean deleteNewsletterByTimestamp(long timestamp){
+        List<NewsletterEntry> allEntries = newsletterRepository.findAll();
+        for (NewsletterEntry entry : allEntries) {
+            if (entry.getId().getTimestamp() == timestamp) {
+                // Delete the entry by its ID (or timestamp)
+                newsletterRepository.delete(entry);
+                return true; // Return true if the entry was successfully deleted
+            }
+        }
+        // Return false if no entry was found with the given timestamp
+        return false;
+    }
 }
 // controller -> service -> repository
