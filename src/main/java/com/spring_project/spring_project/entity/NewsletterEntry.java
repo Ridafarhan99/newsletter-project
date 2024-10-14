@@ -22,6 +22,7 @@ public class NewsletterEntry {
     private String title;
     private String content;
     private LocalDateTime date;
+    private long timestamp;
 
     private List<Comment> comments;
 

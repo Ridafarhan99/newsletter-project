@@ -5,8 +5,10 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface NewsletterRepository extends MongoRepository<NewsletterEntry, ObjectId> {
-
+    Optional<NewsletterEntry> findByTimestamp(String timestamp);
 }
 // controller -> service -> repository

@@ -32,5 +32,22 @@ public class NewsletterService {
 
         return newsletterRepository.save(newsletterEntry);
     }
+
+    public NewsletterEntry updateNewsletterByTimestamp(long timestamp, NewsletterEntry updatedEntry) {
+        // Find the entry by timestamp
+        List<NewsletterEntry> allEntries = newsletterRepository.findAll();
+        for (NewsletterEntry entry : allEntries) {
+            if (entry.getId().getTimestamp() == timestamp) {
+                // Update the title and content
+                entry.setTitle(updatedEntry.getTitle());
+                entry.setContent(updatedEntry.getContent());
+
+                // Save the updated entry
+                return newsletterRepository.save(entry);
+            }
+        }
+        // Return null if no entry found with the given timestamp
+        return null;
+    }
 }
 // controller -> service -> repository
